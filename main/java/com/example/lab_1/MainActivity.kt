@@ -26,11 +26,12 @@ class MainActivity : AppCompatActivity() {
 
         val view_model = ViewModelProvider(this).get(CustomViewModel::class.java)
 
-        textView.text = view_model.number.toString()
+        view_model.count.observe(this) { count ->
+            textView.text = count.toString()
+        }
 
         button.setOnClickListener {
             view_model.Incrementation()
-            textView.text = view_model.number.toString()
         }
     }
 }
